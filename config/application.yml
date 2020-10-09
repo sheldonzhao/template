@@ -1,0 +1,80 @@
+spring:
+  profiles:
+    active: uat
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+    property-naming-strategy: SNAKE_CASE
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: WEB-INF/**
+
+logging:
+  config: file:config/logback.xml
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
+server:
+  tomcat:
+    uri-encoding: UTF-8
+
+druid:
+  monitor:
+    baseurl: /noumena-druid-monitor/*
+    password: noumena
+    username: noumena
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: false
+    env:
+      enabled: false
+  endpoints:
+    web:
+      base-path: /ontoservice-actuator-monitor
+      exposure:
+        include: health,info,beans,sessions,loggers,logfile,metrics,httptrace,mappings,threaddump
+  security:
+    enabled: false
+
+swagger:
+  enable: true
+
+card:
+  secret: 1234567812345678
+
+scheduler:
+  event: 0/10 * * * * ?
+  coin-info: 0 0/1 * * * ?
+  okex-fills: 0/30 * * * * ?
+  coin-price: 0/30 * * * * ?
+  okex-swap: 0/10 * * * * ?
+
+
+wallet:
+  password: "e01e50e3956e8190f41c4291bedf2268c573892ad4b8a8f199b10d5f0a815771"
+
+exchange:
+  premium-rate: 1.01
+  swap-scheduler-run: true #第一台开启，第二台关闭
+
+okex:
+  host: https://www.okex.com/
+  place-order-rate-in-millisecond: 1000
+  spot-btc-unit-amount: 0.01
+
+####aws s3
+aws_access_key_id: AKIAQPKYTAY3ZSBV4YF7
+aws_secret_access_key: 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
+aws_s3_bucket_name: noumena-test
